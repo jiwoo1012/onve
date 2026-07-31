@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "name": "전체 보기",
+    "path": "/products",
+    "image": null
+  },
+  {
+    "id": 2,
+    "name": "키보드",
+    "path": "/products/category/keyboard",
+    "image": "/img/category/keyboard.jpg"
+  },
+  {
+    "id": 3,
+    "name": "마우스",
+    "path": "/products/category/mouse",
+    "image": "/img/category/mouse.jpg"
+  },
+  {
+    "id": 4,
+    "name": "모니터",
+    "path": "/products/category/monitor",
+    "image": "/img/category/monitor.jpg"
+  },
+  {
+    "id": 5,
+    "name": "노트북",
+    "path": "/products/category/laptop",
+    "image": "/img/category/laptop.jpg"
+  },
+  {
+    "id": 6,
+    "name": "스피커",
+    "path": "/products/category/speaker",
+    "image": "/img/category/speaker.jpg"
+  },
+  {
+    "id": 7,
+    "name": "액세서리",
+    "path": "/products/category/accessory",
+    "image": "/img/category/accessory.jpg"
+  }
+]

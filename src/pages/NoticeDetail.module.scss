@@ -1,0 +1,140 @@
+.noticeDetail {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 48px 20px 80px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #ece5d8;
+  margin-bottom: 24px;
+}
+
+.category {
+  font-size: 12px;
+  font-weight: 700;
+  color: #b9905a;
+}
+
+.header h1 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #2e2a22;
+}
+
+.date {
+  font-size: 12px;
+  color: #a89a7d;
+}
+
+.content {
+  font-size: 14px;
+  color: #3a352c;
+  line-height: 1.8;
+  white-space: pre-line;
+  padding-bottom: 40px;
+}
+
+.articleNav {
+  border-top: 1px solid #ece5d8;
+  border-bottom: 1px solid #ece5d8;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 16px 8px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+
+  &:first-child {
+    border-bottom: 1px solid #f2ede3;
+  }
+
+  &:hover:not(.navDisabled) {
+    background-color: #faf7f0;
+  }
+}
+
+.navDisabled {
+  cursor: default;
+  color: #c4bba5;
+
+  .navLabel,
+  .navTitle {
+    color: #c4bba5;
+  }
+}
+
+.navLabel {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  width: 64px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #7d735f;
+}
+
+.arrow {
+  font-size: 12px;
+  color: #b9905a;
+}
+
+.navTitle {
+  font-size: 13px;
+  color: #2e2a22;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bottomBar {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.backButton {
+  padding: 10px 24px;
+  border: 1px solid #2e2a22;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #2e2a22;
+  text-decoration: none;
+  transition: background-color 0.15s ease, color 0.15s ease;
+
+  &:hover {
+    background-color: #2e2a22;
+    color: #fff;
+  }
+}
+
+.loadingMessage {
+  padding: 80px 0;
+  text-align: center;
+  font-size: 14px;
+  color: #a89a7d;
+}
+
+.notFound {
+  padding: 80px 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  a {
+    font-size: 13px;
+    color: #b9905a;
+  }
+}

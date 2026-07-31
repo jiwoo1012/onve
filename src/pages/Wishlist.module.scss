@@ -1,0 +1,836 @@
+.wishlist {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px 100px;
+}
+
+
+// ========================================
+// HEADER
+// ========================================
+
+.header {
+  text-align: center;
+  padding-bottom: 20px;
+  margin-bottom: 32px;
+  border-bottom: 1px solid #ece5d8;
+
+  h2 {
+    margin: 4px 0;
+
+    font-size: 24px;
+    font-weight: 700;
+
+    color: #2e2a22;
+  }
+}
+
+.eyebrow {
+  margin: 0;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  color: #b9905a;
+
+  letter-spacing: 0.05em;
+}
+
+.count {
+  font-size: 13px;
+
+  color: #a89a7d;
+}
+
+
+// ========================================
+// FILTER CHIP
+// ========================================
+
+.chipRow {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin-bottom: 32px;
+}
+
+.chip {
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  padding: 8px 16px;
+
+  border: 1px solid #ece5d8;
+
+  border-radius: 999px;
+
+  background-color: #fff;
+
+  font-size: 13px;
+
+  color: #7d735f;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+
+  &:hover {
+    border-color: #b9905a;
+
+    color: #2e2a22;
+
+    transform: translateY(-1px);
+  }
+}
+
+.chipActive {
+  background-color: #2e2a22;
+
+  border-color: #2e2a22;
+
+  color: #fff;
+
+  .chipCount {
+    background-color:
+      rgba(255, 255, 255, 0.18);
+
+    color: #fff;
+  }
+
+  &:hover {
+    color: #fff;
+
+    transform: none;
+  }
+}
+
+.chipCount {
+  padding: 1px 6px;
+
+  border-radius: 999px;
+
+  background-color: #f2ede3;
+
+  color: #b9905a;
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.filterEmpty {
+  padding: 60px 0;
+
+  text-align: center;
+
+  font-size: 13px;
+
+  color: #a89a7d;
+}
+
+
+// ========================================
+// PRODUCT GRID
+//
+// 기존 columns 제거.
+//
+// 상품 개수와 상관없이
+// PC에서는 무조건 4열.
+// ========================================
+
+.productGrid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  column-gap: 20px;
+
+  row-gap: 28px;
+
+  align-items: start;
+}
+
+
+// ========================================
+// CARD WRAPPER
+// ========================================
+
+.cardSlot {
+  position: relative;
+
+  min-width: 0;
+
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      );
+
+  // 카드 위에 마우스를 올리면
+  // 찜 해제 힌트 표시
+  &:hover {
+    .removeHint {
+      opacity: 1;
+
+      transform:
+        translateY(0);
+    }
+  }
+}
+
+
+// ========================================
+// 찜 해제 HOVER 안내
+// ========================================
+
+.removeHint {
+  position: absolute;
+
+  // 하트 버튼 왼쪽 부근
+  top: 16px;
+  right: 54px;
+
+  z-index: 20;
+
+  padding: 6px 9px;
+
+  border-radius: 4px;
+
+  background-color:
+    rgba(46, 42, 34, 0.92);
+
+  color: #fff;
+
+  font-size: 10px;
+
+  line-height: 1;
+
+  white-space: nowrap;
+
+  opacity: 0;
+
+  transform:
+    translateY(4px);
+
+  pointer-events: none;
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+
+  // 작은 화살표
+  &::after {
+    content: '';
+
+    position: absolute;
+
+    top: 50%;
+    right: -4px;
+
+    width: 8px;
+    height: 8px;
+
+    background-color:
+      rgba(46, 42, 34, 0.92);
+
+    transform:
+      translateY(-50%)
+      rotate(45deg);
+  }
+}
+
+
+// ========================================
+// 삭제 중 카드
+// ========================================
+
+.cardRemoving {
+  pointer-events: none;
+
+  animation:
+    removeCard
+    0.5s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    )
+    forwards;
+
+  .removeHint {
+    opacity: 0;
+  }
+}
+
+
+// ========================================
+// 클릭 후 "찜 해제" 피드백
+// ========================================
+
+.removeFeedback {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 50;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 6px;
+
+  border-radius: 8px;
+
+  background-color:
+    rgba(
+      250,
+      247,
+      240,
+      0.9
+    );
+
+  pointer-events: none;
+
+  animation:
+    feedbackIn
+    0.25s
+    ease
+    both;
+
+  span {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 38px;
+    height: 38px;
+
+    border-radius: 50%;
+
+    background-color: #fff;
+
+    color: #c95347;
+
+    font-size: 15px;
+
+    box-shadow:
+      0 6px 18px
+      rgba(
+        46,
+        42,
+        34,
+        0.08
+      );
+
+    animation:
+      heartPop
+      0.35s
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      );
+  }
+
+  p {
+    margin: 0;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    color: #2e2a22;
+  }
+}
+
+
+// ========================================
+// PAGINATION
+// ========================================
+
+.pagination {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 28px;
+
+  margin-top: 64px;
+
+  padding-top: 32px;
+
+  border-top:
+    1px solid #ece5d8;
+}
+
+.pageArrow {
+  padding: 4px;
+
+  border: none;
+
+  background: none;
+
+  font-size: 18px;
+  font-weight: 300;
+
+  color: #2e2a22;
+
+  cursor: pointer;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+
+  &:hover:not(:disabled) {
+    color: #b9905a;
+  }
+
+  &:first-child:hover:not(:disabled) {
+    transform:
+      translateX(-3px);
+  }
+
+  &:last-child:hover:not(:disabled) {
+    transform:
+      translateX(3px);
+  }
+
+  &:disabled {
+    color: #d8d0bf;
+
+    cursor: not-allowed;
+  }
+}
+
+.pageNumber {
+  position: relative;
+
+  padding: 4px 2px;
+
+  border: none;
+
+  background: none;
+
+  font-size: 15px;
+  font-weight: 400;
+
+  color: #c4bba5;
+
+  cursor: pointer;
+
+  transition:
+    color 0.25s ease;
+
+  &::after {
+    content: '';
+
+    position: absolute;
+
+    left: 50%;
+    bottom: -2px;
+
+    width: 0;
+    height: 1px;
+
+    background-color:
+      #2e2a22;
+
+    transform:
+      translateX(-50%);
+
+    transition:
+      width
+      0.25s
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      );
+  }
+
+  &:hover {
+    color: #7d735f;
+
+    &::after {
+      width: 60%;
+
+      background-color:
+        #b9905a;
+    }
+  }
+}
+
+.pageNumberActive {
+  color: #2e2a22;
+
+  font-weight: 700;
+
+  &::after {
+    width: 100%;
+
+    background-color:
+      #2e2a22;
+  }
+
+  &:hover {
+    color: #2e2a22;
+
+    &::after {
+      width: 100%;
+
+      background-color:
+        #2e2a22;
+    }
+  }
+}
+
+
+// ========================================
+// CART MODAL
+// ========================================
+
+.modalOverlay {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 1000;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background-color:
+    rgba(46, 42, 34, 0.5);
+
+  animation:
+    fadeIn 0.2s ease;
+}
+
+.modalBox {
+  position: relative;
+
+  width: 100%;
+
+  max-width: 360px;
+
+  margin: 0 20px;
+
+  padding:
+    28px
+    24px
+    24px;
+
+  border-radius: 12px;
+
+  background-color: #fff;
+
+  animation:
+    slideUp
+    0.25s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    );
+}
+
+.modalClose {
+  position: absolute;
+
+  top: 16px;
+  right: 16px;
+
+  border: none;
+
+  background: none;
+
+  font-size: 14px;
+
+  color: #a89a7d;
+
+  cursor: pointer;
+
+  &:hover {
+    color: #2e2a22;
+  }
+}
+
+.modalContent {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  text-align: center;
+
+  gap: 6px;
+
+  margin-bottom: 24px;
+}
+
+.modalImage {
+  width: 80px;
+  height: 80px;
+
+  margin-bottom: 12px;
+
+  overflow: hidden;
+
+  border-radius: 8px;
+
+  background-color: #f2ede3;
+
+  img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+  }
+}
+
+.modalMessage {
+  margin: 0;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  color: #2e2a22;
+}
+
+.modalProductName {
+  max-width: 100%;
+
+  margin: 0;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+
+  font-size: 12px;
+
+  color: #a89a7d;
+}
+
+.modalActions {
+  display: flex;
+
+  gap: 8px;
+}
+
+.modalContinue,
+.modalGoCart {
+  flex: 1;
+
+  padding: 12px 0;
+
+  border-radius: 6px;
+
+  font-size: 13px;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.15s ease;
+}
+
+.modalContinue {
+  border:
+    1px solid #ece5d8;
+
+  background-color: #fff;
+
+  color: #7d735f;
+
+  &:hover {
+    background-color:
+      #faf7f0;
+  }
+}
+
+.modalGoCart {
+  border: none;
+
+  background-color:
+    #2e2a22;
+
+  color: #fff;
+
+  font-weight: 700;
+
+  &:hover {
+    background-color:
+      #b9905a;
+  }
+}
+
+
+// ========================================
+// ANIMATION
+// ========================================
+
+@keyframes removeCard {
+  0% {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+  65% {
+    opacity: 0.55;
+
+    transform:
+      translateY(-5px)
+      scale(0.985);
+  }
+
+  100% {
+    opacity: 0;
+
+    transform:
+      translateY(-10px)
+      scale(0.97);
+  }
+}
+
+@keyframes feedbackIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes heartPop {
+  0% {
+    transform:
+      scale(0.7);
+  }
+
+  60% {
+    transform:
+      scale(1.15);
+  }
+
+  100% {
+    transform:
+      scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+
+// ========================================
+// TABLET
+// ========================================
+
+@media (max-width: 900px) {
+
+  .productGrid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 28px 16px;
+  }
+
+  .chipRow {
+    gap: 6px;
+  }
+
+  .chip {
+    padding: 7px 12px;
+
+    font-size: 12px;
+  }
+}
+
+
+// ========================================
+// MOBILE
+// ========================================
+
+@media (max-width: 520px) {
+
+  .wishlist {
+    padding:
+      30px
+      16px
+      70px;
+  }
+
+  .productGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .removeHint {
+    // 모바일은 hover가 없으므로
+    // tooltip 숨김
+    display: none;
+  }
+
+  .pagination {
+    gap: 20px;
+
+    margin-top: 48px;
+  }
+}

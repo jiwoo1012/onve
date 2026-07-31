@@ -1,0 +1,599 @@
+// ========================================
+// MAIN BANNER
+// ========================================
+
+.banner {
+  position: relative;
+
+  width: 100%;
+  height: 100vh;
+
+  overflow: hidden;
+
+  background-color: #f8f7f4;
+
+  isolation: isolate;
+}
+
+
+// ========================================
+// BACKGROUND
+// ========================================
+
+.backgrounds {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+}
+
+.background {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  opacity: 0;
+
+  img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+  }
+}
+
+.activeBackground {
+  opacity: 1;
+}
+
+
+// ========================================
+// GUIDE
+// ========================================
+
+.guide {
+  position: absolute;
+
+  left: 12%;
+  top: 50%;
+
+  z-index: 20;
+
+  width: 1px;
+  height: 1px;
+}
+
+.guideLabel {
+  position: absolute;
+
+  right: 28px;
+  top: -10px;
+
+  color: #fff;
+
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.pivot {
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background-color: #fff;
+
+  transform:
+    translate(
+      -50%,
+      -50%
+    );
+}
+
+.lineTop,
+.lineBottom {
+  position: absolute;
+
+  left: 0;
+
+  width: 2px;
+  height: 900px;
+
+  background-color:
+    rgba(
+      255,
+      255,
+      255,
+      0.9
+    );
+}
+
+.lineTop {
+  bottom: 0;
+
+  transform-origin:
+    bottom center;
+
+  transform:
+    rotate(42deg);
+}
+
+.lineBottom {
+  top: 0;
+
+  transform-origin:
+    top center;
+
+  transform:
+    rotate(-42deg);
+}
+
+
+// ========================================
+// TITLE
+// ========================================
+
+.titleArea {
+  position: absolute;
+
+  left: 25%;
+  top: 50%;
+
+  z-index: 15;
+
+  height: 330px;
+
+  overflow: hidden;
+
+  transform:
+    translateY(-50%);
+}
+
+
+
+.titleItem {
+  height: 110px;
+
+  display: flex;
+
+  align-items: center;
+
+  font-size:
+    clamp(
+      48px,
+      5vw,
+      90px
+    );
+
+  font-weight: 300;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.28
+    );
+
+  white-space: nowrap;
+
+  transition:
+    color 0.5s ease,
+    opacity 0.5s ease;
+}
+
+.activeTitle {
+  color: #fff;
+}
+
+
+// ========================================
+// THUMBNAIL
+// ========================================
+
+.thumbnailArea {
+  position: absolute;
+
+  right: 12%;
+  top: 50%;
+
+  z-index: 15;
+
+  width: 130px;
+  height: 130px;
+
+  transform:
+    translateY(-50%);
+}
+
+ .thumbnail{
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 130px;
+  height: 90px;
+
+  opacity: 0.55;
+
+  transition:
+    transform
+      0.7s
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      ),
+    opacity
+      0.5s
+      ease;
+
+  img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+  }
+}
+
+.activeThumbnail {
+  opacity: 1;
+}
+
+
+// ========================================
+// COLLECTION
+// ========================================
+
+.collectionBox {
+  position: absolute;
+
+  right: 40px;
+  top: 30px;
+
+  z-index: 25;
+
+  min-width: 280px;
+
+  padding:
+    14px
+    20px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  background-color:
+    rgba(
+      255,
+      255,
+      255,
+      0.95
+    );
+
+  color: #282624;
+
+  span {
+    display: block;
+
+    font-size: 10px;
+
+    letter-spacing:
+      1.5px;
+
+    color: #8d8176;
+  }
+
+  strong {
+    display: block;
+
+    margin-top: 2px;
+
+    font-size: 16px;
+
+    font-weight: 600;
+  }
+
+  p {
+    margin:
+      2px
+      0
+      0;
+
+    font-size: 12px;
+
+    color: #777;
+  }
+}
+
+.collectionCircle {
+  width: 38px;
+  height: 38px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background-color:
+    #b69b7d;
+}
+
+
+// ========================================
+// BOTTOM BAR
+// ========================================
+
+.bottomBar {
+  position: absolute;
+
+  left: 50%;
+  bottom: 24px;
+
+  z-index: 30;
+
+  transform:
+    translateX(-50%);
+
+  width:
+    min(
+      620px,
+      calc(
+        100% - 40px
+      )
+    );
+
+  min-height: 70px;
+
+  padding:
+    0
+    24px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content:
+    space-between;
+
+  background-color: #fff;
+
+  strong {
+    font-size: 28px;
+
+    letter-spacing: 4px;
+  }
+
+  span {
+    font-size: 10px;
+
+    line-height: 1.4;
+  }
+
+  button {
+    padding:
+      15px
+      22px;
+
+    border: none;
+
+    background-color:
+      #b69b7d;
+
+    color: #fff;
+
+    font-size: 11px;
+
+    cursor: pointer;
+
+    transition:
+      background-color
+      0.3s
+      ease;
+
+    &:hover {
+      background-color:
+        #594a3c;
+    }
+  }
+}
+
+
+// ========================================
+// TRANSITION TEXT
+// ========================================
+
+.transitionLeft,
+.transitionRight {
+  position: absolute;
+
+  top: 50%;
+
+  z-index: 30;
+
+  margin: 0;
+
+  font-size:
+    clamp(
+      48px,
+      4vw,
+      76px
+    );
+
+  font-weight: 400;
+
+  color: #6b6864;
+
+  white-space: nowrap;
+
+  opacity: 0;
+
+  pointer-events: none;
+}
+
+.transitionLeft {
+  left: 50%;
+
+  transform:
+    translate(
+      -100%,
+      -50%
+    );
+}
+
+.transitionRight {
+  right: 50%;
+
+  transform:
+    translate(
+      100%,
+      -50%
+    );
+}
+
+
+// ========================================
+// CATEGORY OVERLAY
+// ========================================
+
+.categoryOverlay {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 100;
+
+  width: 100%;
+  height: 100vh;
+
+  overflow: hidden;
+
+  // 기존 배너와 확실히 구분되는
+  // 따뜻한 베이지
+  background-color: #eee5d8;
+
+  border-top-left-radius:
+    80px;
+
+  border-top-right-radius:
+    80px;
+
+  pointer-events: none;
+
+  will-change:
+    transform,
+    border-radius;
+
+  > * {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+
+// ========================================
+// TABLET
+// ========================================
+
+@media (max-width: 1024px) {
+
+  .guide {
+    left: 8%;
+  }
+
+  .titleArea {
+    left: 18%;
+  }
+
+  .thumbnailArea {
+    right: 6%;
+  }
+
+  .collectionBox {
+    right: 20px;
+  }
+}
+
+
+// ========================================
+// MOBILE
+// ========================================
+
+@media (max-width: 768px) {
+
+  .guide {
+    left: 6%;
+  }
+
+  .guideLabel {
+    display: none;
+  }
+
+  .titleArea {
+    left: 12%;
+
+    width: 80%;
+  }
+
+  .titleItem {
+    font-size: 42px;
+  }
+
+  .thumbnailArea {
+    display: none;
+  }
+
+  .collectionBox {
+    top: 20px;
+    right: 16px;
+
+    min-width: auto;
+
+    padding:
+      10px
+      14px;
+
+    p {
+      display: none;
+    }
+  }
+
+  .bottomBar {
+    bottom: 14px;
+
+    strong {
+      font-size: 22px;
+    }
+
+    span {
+      display: none;
+    }
+  }
+
+  .categoryOverlay {
+    border-top-left-radius:
+      40px;
+
+    border-top-right-radius:
+      40px;
+  }
+}

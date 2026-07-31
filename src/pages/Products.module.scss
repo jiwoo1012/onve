@@ -1,0 +1,29 @@
+.products {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px 80px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid #ece5d8;
+
+  h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #2e2a22;
+  }
+}
+
+.loadingMessage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  font-size: 14px;
+  color: #a89a7d;
+}

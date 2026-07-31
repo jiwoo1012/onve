@@ -1,0 +1,567 @@
+// ========================================
+// CATEGORY SECTION
+// ========================================
+
+.categorySection {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  box-sizing: border-box;
+  border-radius: 20px 20px 0 0;
+
+  padding:
+    65px
+    4%
+    30px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  overflow: hidden;
+
+  background-color:
+    #eee5d8;
+}
+
+
+// ========================================
+// HEADER
+// ========================================
+
+.categoryHeader {
+  position: relative;
+
+  z-index: 30;
+
+  flex-shrink: 0;
+
+  width: 100%;
+
+  margin-bottom: 25px;
+
+  text-align: center;
+
+  
+  h2 {
+    margin:
+      10px
+      0
+      0;
+
+    font-size: 50px;
+
+    line-height: 1.1;
+
+    font-weight: 700;
+
+    color: #322e29;
+  }
+}
+
+
+// ========================================
+// CAROUSEL
+// ========================================
+
+.carousel {
+  position: relative;
+
+  z-index: 10;
+
+  width: 100%;
+
+  flex: 1;
+
+  min-height: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+
+// ========================================
+// 3D STAGE
+// ========================================
+
+.stage {
+  position: relative;
+
+  width:
+    min(
+      1200px,
+      82vw
+    );
+
+  height: 440px;
+
+  display: flex;
+
+  align-items: flex-start;
+
+  justify-content: center;
+
+  perspective: 1400px;
+
+  perspective-origin:
+    center center;
+}
+
+
+// ========================================
+// TRACK
+// ========================================
+
+.track {
+  position: relative;
+
+  width: 340px;
+  height: 430px;
+
+  transform-style:
+    preserve-3d;
+}
+
+
+// ========================================
+// CARD
+// ========================================
+
+.card {
+  position: absolute;
+
+  top: 0;
+  left: 50%;
+
+  width: 320px;
+
+  margin-left:
+    -160px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  color: #2e2a22;
+
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transform-style:
+    preserve-3d;
+
+  transform-origin:
+    center center;
+
+  backface-visibility:
+    hidden;
+
+  will-change:
+    transform,
+    opacity;
+
+  transition:
+    transform
+      0.85s
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      ),
+
+    opacity
+      0.6s
+      ease;
+
+  &:hover {
+    .cardImage {
+      box-shadow:
+        0
+        25px
+        55px
+        rgba(
+          46,
+          42,
+          34,
+          0.16
+        );
+    }
+  }
+}
+
+.cardActive {
+  .cardImage {
+    box-shadow:
+      0
+      28px
+      65px
+      rgba(
+        46,
+        42,
+        34,
+        0.16
+      );
+  }
+}
+
+
+// ========================================
+// CARD IMAGE
+// ========================================
+
+.cardImage {
+  position: relative;
+
+  width: 100%;
+  height: 330px;
+
+  flex-shrink: 0;
+
+  overflow: hidden;
+
+  border-radius: 10px;
+
+  background-color:
+    #f6f0e7;
+
+  box-shadow:
+    0
+    18px
+    35px
+    rgba(
+      46,
+      42,
+      34,
+      0.09
+    );
+
+  transition:
+    box-shadow
+    0.4s
+    ease;
+
+  img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+  }
+}
+
+
+// ========================================
+// SHADE
+// ========================================
+
+.cardShade {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    rgba(
+      36,
+      30,
+      24,
+      0.08
+    );
+
+  pointer-events: none;
+}
+
+
+// ========================================
+// CARD INFO
+// ========================================
+
+.cardInfo {
+  margin-top: 15px;
+
+  text-align: center;
+
+  span {
+    display: block;
+
+    margin-bottom: 5px;
+
+    font-size: 10px;
+
+    color: #a67e50;
+  }
+
+  h3 {
+    margin:
+      0
+      0
+      4px;
+
+    font-size: 21px;
+
+    font-weight: 500;
+
+    color: #322e29;
+  }
+
+  p {
+    margin: 0;
+
+    font-size: 10px;
+
+    letter-spacing:
+      1px;
+
+    color: #998a78;
+  }
+}
+
+
+// ========================================
+// ARROWS
+// ========================================
+
+.arrow {
+  position: absolute;
+
+  top: 45%;
+
+  z-index: 50;
+
+  padding: 12px;
+
+  border: none;
+
+  background:
+    transparent;
+
+  color: #322e29;
+
+  font-size: 28px;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    color
+      0.2s
+      ease,
+    transform
+      0.3s
+      ease;
+
+  &:hover {
+    color: #a67e50;
+  }
+}
+
+.arrowLeft {
+  left: 3%;
+
+  &:hover {
+    transform:
+      translateX(-5px);
+  }
+}
+
+.arrowRight {
+  right: 3%;
+
+  &:hover {
+    transform:
+      translateX(5px);
+  }
+}
+
+
+// ========================================
+// DOTS
+// ========================================
+
+.dots {
+  position: relative;
+
+  z-index: 30;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  margin-top: 5px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+
+  padding: 0;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background-color:
+    #d8cbbb;
+
+  cursor: pointer;
+
+  transition:
+    width
+      0.3s
+      ease,
+
+    background-color
+      0.3s
+      ease;
+}
+
+.dotActive {
+  width: 20px;
+
+  border-radius: 10px;
+
+  background-color:
+    #a67e50;
+}
+
+
+// ========================================
+// TABLET
+// ========================================
+
+@media (max-width: 1024px) {
+
+  .categorySection {
+    padding:
+      60px
+      4%
+      25px;
+  }
+
+  .categoryHeader {
+
+    h2 {
+      font-size: 36px;
+    }
+  }
+
+  .stage {
+    width: 90vw;
+  }
+
+  .track {
+    width: 300px;
+  }
+
+  .card {
+    width: 280px;
+
+    margin-left:
+      -140px;
+  }
+
+  .cardImage {
+    height: 300px;
+  }
+}
+
+
+// ========================================
+// MOBILE
+// ========================================
+
+@media (max-width: 768px) {
+
+  .categorySection {
+    padding:
+      50px
+      18px
+      22px;
+  }
+
+  .categoryHeader {
+    margin-bottom: 15px;
+
+    span {
+      font-size: 9px;
+    }
+
+    h2 {
+      margin-top: 7px;
+
+      font-size: 29px;
+    }
+  }
+
+  .stage {
+    width: 100%;
+
+    height: 350px;
+
+    perspective:
+      1000px;
+  }
+
+  .track {
+    width: 230px;
+
+    height: 340px;
+  }
+
+  .card {
+    width: 230px;
+
+    margin-left:
+      -115px;
+  }
+
+  .cardImage {
+    height: 270px;
+  }
+
+  .cardInfo {
+    margin-top: 10px;
+
+    h3 {
+      font-size: 18px;
+    }
+
+    p {
+      font-size: 9px;
+    }
+  }
+
+  .arrow {
+    top: 42%;
+
+    font-size: 21px;
+  }
+
+  .arrowLeft {
+    left: 0;
+  }
+
+  .arrowRight {
+    right: 0;
+  }
+
+  .dots {
+    margin-top: 0;
+  }
+}

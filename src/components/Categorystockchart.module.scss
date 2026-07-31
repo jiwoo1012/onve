@@ -1,0 +1,81 @@
+.chartBox {
+  padding: 26px 24px 20px;
+  background-color: #fdfcfa;
+  border: 1px solid #ece5d8;
+  border-radius: 14px;
+}
+
+.chartHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.chartTitle {
+  margin: 0 0 4px;
+  color: #2e2a22;
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.chartSubText {
+  margin: 0;
+  color: #7d735f;
+  font-size: 13px;
+}
+
+.chartInsightBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background-color: #faf7f0;
+  border: 1px solid #ece5d8;
+  border-radius: 20px;
+  color: #2e2a22;
+  font-size: 13px;
+
+  strong {
+    color: #9e733b;
+    font-weight: 800;
+  }
+}
+
+.insightIcon {
+  font-size: 14px;
+}
+
+.barCell {
+  transition: opacity 0.2s ease, fill 0.2s ease;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+.chartFooterSummary {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed #ece5d8;
+  color: #594a3c;
+  font-size: 12.5px;
+  text-align: right;
+
+  strong {
+    color: #2e2a22;
+    font-weight: 700;
+  }
+}
+
+@media (max-width: 720px) {
+  .chartHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .chartFooterSummary {
+    text-align: left;
+  }
+}

@@ -1,0 +1,39 @@
+.quantityControl {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ece5d8;
+  border-radius: 6px;
+  overflow: hidden;
+  width: fit-content;
+}
+
+.button {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background-color: #faf7f0;
+  color: #7d735f;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.15s ease;
+
+  &:hover {
+    background-color: #f2ede3;
+  }
+
+  &:disabled {
+    color: #d8d0bf;
+    cursor: not-allowed;
+  }
+}
+
+.count {
+  width: 40px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: #2e2a22;
+}

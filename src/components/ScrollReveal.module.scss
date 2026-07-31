@@ -1,0 +1,13 @@
+.reveal {
+  will-change: transform, opacity;
+}
+
+.textMask {
+  overflow: hidden;
+  display: block;
+
+  span {
+    display: inline-block;
+    will-change: transform;
+  }
+}

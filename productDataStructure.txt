@@ -1,0 +1,27 @@
+Firestore products 컬렉션 데이터 구조
+작성일: 2026-07-29
+
+컬렉션: products
+문서 ID: Firestore 자동 ID
+
+필수 또는 기본 필드
+- name: string - 상품명
+- categoryName: string - 관리자 화면에 표시할 카테고리명
+- category: string - 카테고리 값 (예: LIFTING, SKINCARE)
+- price: number - 정가
+- discountRate: number - 할인율(0~100)
+- stock: number - 재고 수량
+- image: string - 상품 이미지 경로 또는 URL
+- description: string - 상품 설명
+- isRecommended: boolean - 추천 상품 여부
+- salesCount: number - 판매 수량, 신규 등록 시 0
+- createdAt: Timestamp - 신규 상품 등록 시 serverTimestamp()
+- updatedAt: Timestamp - 등록·수정 시 serverTimestamp()
+
+products.json 마이그레이션 추가 필드
+- legacyId: string - 기존 products.json의 id 값, 중복 이전 방지용
+- migratedAt: Timestamp - Firestore 이전 실행 시 serverTimestamp()
+
+고객 화면 연결
+- 상품 목록, 카테고리 목록, 검색 결과, 메인 베스트 상품은 Firestore products 컬렉션을 조회함.
+- 상품 상세 URL의 :id는 Firestore 자동 문서 ID를 사용함.

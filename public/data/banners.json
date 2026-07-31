@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "image": "/img/bannerImg01.png",
+    "eyebrow": "NEW ARRIVAL",
+    "title": "새로운 데스크테리어의 시작",
+    "description": "업무와 게임을 위한 특별한 상품을 만나보세요."
+  },
+  {
+    "id": 2,
+    "image": "/img/bannerImg02.png",
+    "eyebrow": "WEEKLY SALE",
+    "title": "이번주 인기상품 특별할인",
+    "description": "놓치기 아쉬운 베스트 상품을 합리적인 가격으로 준비했습니다."
+  },
+  {
+    "id": 3,
+    "image": "/img/bannerImg03.png",
+    "eyebrow": "FREE DELIVERY",
+    "title": "5만원 이상 무료배송",
+    "description": "필요한 상품을 배송비 부담 없이 쇼핑하세요."
+  }
+]

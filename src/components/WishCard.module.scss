@@ -1,0 +1,241 @@
+.flipCard {
+  display: block; // Link가 <a> 태그라 기본이 inline이므로 block으로 지정
+  break-inside: avoid;
+  margin-bottom: 20px;
+  perspective: 1200px;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+.removing {
+  opacity: 0;
+  transform: translateX(40px) scale(0.9);
+  pointer-events: none;
+}
+
+.flipInner {
+  position: relative;
+  width: 100%;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  transform-style: preserve-3d;
+}
+
+.flipCard:hover .flipInner {
+  transform: rotateY(180deg);
+}
+
+// ========================================
+// 앞면
+// ========================================
+
+.front {
+  backface-visibility: hidden;
+}
+
+.imageArea {
+  position: relative;
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #f2ede3;
+
+  img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+  }
+}
+
+.soldOutBadge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 4px 10px;
+  background-color: rgba(46, 42, 34, 0.85);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 4px;
+}
+
+.removeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #c1453a;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.information {
+  padding: 12px 4px 0;
+}
+
+.category {
+  font-size: 11px;
+  color: #a89a7d;
+  margin: 0 0 4px;
+}
+
+.name {
+  font-size: 13px;
+  color: #2e2a22;
+  margin: 0 0 6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.priceArea {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.discountRate {
+  font-size: 12px;
+  font-weight: 700;
+  color: #b9905a;
+}
+
+.price {
+  font-size: 14px;
+  font-weight: 700;
+  color: #2e2a22;
+}
+
+// ========================================
+// 뒷면
+// ========================================
+
+.back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.backImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(1px) brightness(0.9);
+}
+
+.backOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(46, 42, 34, 0.88) 0%,
+    rgba(46, 42, 34, 0.55) 55%,
+    rgba(46, 42, 34, 0.35) 100%
+  );
+}
+
+.backContent {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 24px 20px;
+  color: #fff;
+  text-align: center;
+}
+
+.backCategory {
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  color: #b9905a;
+  margin: 0;
+}
+
+.backName {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.backPrice {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+.backActions {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+
+.cartButton {
+  flex: 1;
+  padding: 10px 0;
+  border: none;
+  border-radius: 6px;
+  background-color: #b9905a;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+
+  &:hover {
+    background-color: #a37f4d;
+  }
+
+  &:disabled {
+    background-color: #6b6459;
+    cursor: not-allowed;
+  }
+}
+
+.unlikeButton {
+  flex: 1;
+  padding: 10px 0;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 6px;
+  background: none;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+
+  &:hover {
+    border-color: #fff;
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+}
+
+.viewMoreHint {
+  margin-top: 10px;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.5);
+}

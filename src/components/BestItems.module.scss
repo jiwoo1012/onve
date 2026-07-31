@@ -1,0 +1,799 @@
+.bestItems {
+  width: 100%;
+
+  padding: 110px 0 140px;
+
+  background-color: #fbfaf7;
+}
+
+.inner {
+  width: min(1420px, calc(100% - 80px));
+
+  margin: 0 auto;
+}
+
+
+// ========================================
+// TITLE
+// ========================================
+
+.heading {
+  position: relative;
+
+  margin-bottom: 130px;
+
+  text-align: center;
+
+  > span {
+    display: block;
+
+    margin-bottom: 9px;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    letter-spacing: 0.18em;
+
+    color: #b9905a;
+  }
+
+  h2 {
+    margin: 0;
+
+    font-size: 38px;
+    font-weight: 500;
+
+    letter-spacing: -0.03em;
+
+    color: #302c26;
+  }
+}
+
+.viewAll {
+  position: absolute;
+
+  right: 0;
+  bottom: 3px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  padding-bottom: 3px;
+
+  border-bottom: 1px solid transparent;
+
+  font-size: 20px;
+
+  color: #8f8575;
+
+  text-decoration: none;
+
+  transition:
+    color 0.25s ease,
+    border-color 0.25s ease;
+
+  span {
+    transition:
+      transform 0.25s ease;
+  }
+
+  &:hover {
+    color: #2e2a22;
+
+    border-color: #2e2a22;
+
+    span {
+      transform:
+        translate(2px, -2px);
+    }
+  }
+}
+
+
+// ========================================
+// CONTENT LAYOUT
+// ========================================
+
+.contents {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.08fr)
+    minmax(0, 0.92fr);
+
+  gap: 28px;
+
+  min-height: 630px;
+}
+
+
+// ========================================
+// LEFT HERO
+// ========================================
+
+.hero {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  min-height: 630px;
+
+  overflow: hidden;
+
+  border-radius: 18px;
+
+  background-color: #eee7dc;
+}
+
+.heroSlides {
+  position: absolute;
+
+  inset: 0;
+}
+
+.heroSlide {
+  position: absolute;
+
+  inset: 0;
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  overflow: hidden;
+
+  color: #fff;
+
+  text-decoration: none;
+
+  transition:
+    opacity 0.9s ease,
+    visibility 0.9s ease;
+
+  img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transform:
+      scale(1.045);
+
+    transition:
+      transform 4s ease;
+  }
+}
+
+.heroSlideActive {
+  opacity: 1;
+
+  visibility: visible;
+
+  img {
+    transform:
+      scale(1);
+  }
+}
+
+.heroOverlay {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(20, 16, 12, 0.02) 35%,
+      rgba(20, 16, 12, 0.6) 100%
+    );
+}
+
+
+// ========================================
+// HERO INFO
+// ========================================
+
+.heroInfo {
+  position: absolute;
+
+  left: 38px;
+  bottom: 48px;
+
+  z-index: 5;
+
+  max-width: 72%;
+}
+
+.pickNumber {
+  display: block;
+
+  margin-bottom: 8px;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+
+  color:
+    rgba(255, 255, 255, 0.8);
+}
+
+.heroCategory {
+  display: block;
+
+  margin-bottom: 8px;
+
+  font-size: 10px;
+
+  letter-spacing: 0.14em;
+
+  color:
+    rgba(255, 255, 255, 0.7);
+}
+
+.heroInfo {
+  h3 {
+    margin: 0;
+
+    font-size:
+      clamp(
+        28px,
+        2.4vw,
+        42px
+      );
+
+    line-height: 1.15;
+
+    font-weight: 500;
+
+    letter-spacing: -0.04em;
+  }
+}
+
+.heroPrice {
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  margin-top: 14px;
+
+  strong {
+    font-size: 13px;
+
+    color: #dec09b;
+  }
+
+  span {
+    font-size: 14px;
+    font-weight: 500;
+  }
+}
+
+
+// ========================================
+// HERO ARROWS
+// ========================================
+
+.heroArrow {
+  position: absolute;
+    text-align: center;
+  top: 50%;
+
+  z-index: 10;
+
+  width: 42px;
+  height: 42px;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background-color:
+    rgba(255, 255, 255, 0.18);
+
+  backdrop-filter:
+    blur(8px);
+
+  color: #fff;
+
+  font-size: 40px;
+
+  line-height: 42px;
+
+  cursor: pointer;
+
+  transform:
+    translateY(-50%);
+
+  transition:
+    background-color 0.25s ease,
+    transform 0.25s ease;
+
+  &:hover {
+    background-color:
+      rgba(255, 255, 255, 0.32);
+  }
+}
+
+.heroPrev {
+  left: 22px;
+
+  &:hover {
+    transform:
+      translate(-3px, -50%);
+  }
+}
+
+.heroNext {
+  right: 22px;
+
+  &:hover {
+    transform:
+      translate(3px, -50%);
+  }
+}
+
+
+// ========================================
+// HERO PAGINATION
+// ========================================
+
+.heroPagination {
+  position: absolute;
+
+  right: 34px;
+  bottom: 28px;
+
+  z-index: 10;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  span {
+    font-size: 9px;
+
+    color:
+      rgba(255, 255, 255, 0.7);
+  }
+}
+
+.heroProgress {
+  display: flex;
+
+  gap: 4px;
+
+  button {
+    width: 22px;
+    height: 2px;
+
+    padding: 0;
+
+    border: none;
+
+    background-color:
+      rgba(255, 255, 255, 0.4);
+
+    cursor: pointer;
+
+    transition:
+      width 0.3s ease,
+      background-color 0.3s ease;
+  }
+
+  .progressActive {
+    width: 38px;
+
+    background-color: #fff;
+  }
+}
+
+
+// ========================================
+// RIGHT GRID
+// ========================================
+
+.productGrid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  grid-template-rows:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 28px 22px;
+}
+
+
+// ========================================
+// PRODUCT CARD
+// ========================================
+
+.productCard {
+  min-width: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  color: #2e2a22;
+
+  text-decoration: none;
+
+  &:hover {
+
+    .productImage {
+      background-color: #ede4d7;
+
+      img {
+        transform:
+          scale(1.06);
+      }
+    }
+
+    .hoverLayer {
+      opacity: 1;
+    }
+
+    .productInfo h3 {
+      color: #9f764b;
+    }
+  }
+}
+
+
+// ========================================
+// PRODUCT IMAGE
+// ========================================
+
+.productImage {
+  position: relative;
+
+  flex: 1;
+
+  min-height: 220px;
+
+  overflow: hidden;
+
+  border-radius: 16px;
+
+  background-color: #f1ece4;
+
+  transition:
+    background-color 0.35s ease;
+
+  img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    padding: 30px;
+
+    box-sizing: border-box;
+
+    transition:
+      transform
+      0.5s
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      );
+  }
+}
+
+
+// ========================================
+// RANK
+// ========================================
+
+.rank {
+  position: absolute;
+
+  left: 15px;
+  top: 14px;
+
+  z-index: 4;
+
+  font-size: 10px;
+  font-weight: 600;
+
+  letter-spacing: 0.08em;
+
+  color: #aa8258;
+}
+
+
+// ========================================
+// HOVER
+// ========================================
+
+.hoverLayer {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 3;
+
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content: space-between;
+
+  padding:
+    20px 18px;
+
+  box-sizing: border-box;
+
+  background:
+    linear-gradient(
+      180deg,
+      transparent 55%,
+      rgba(45, 39, 32, 0.42)
+    );
+
+  opacity: 0;
+
+  color: #fff;
+
+  transition:
+    opacity 0.35s ease;
+
+  span {
+    font-size: 10px;
+
+    letter-spacing: 0.1em;
+  }
+}
+
+.hoverArrow {
+  font-size: 18px !important;
+
+  transition:
+    transform 0.25s ease;
+
+  .productCard:hover & {
+    transform:
+      translate(3px, -3px);
+  }
+}
+
+
+// ========================================
+// PRODUCT INFO
+// ========================================
+
+.productInfo {
+  padding:
+    13px
+    3px
+    0;
+
+  .category {
+    display: block;
+
+    margin-bottom: 6px;
+
+    font-size: 9px;
+
+    letter-spacing: 0.1em;
+
+    color: #aa9171;
+  }
+
+  h3 {
+    margin: 0;
+
+    overflow: hidden;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    line-height: 1.45;
+
+    color: #3a352f;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+
+    transition:
+      color 0.25s ease;
+  }
+}
+
+.priceArea {
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  margin-top: 7px;
+
+  strong {
+    font-size: 12px;
+
+    color: #b9905a;
+  }
+
+  span {
+    font-size: 13px;
+
+    font-weight: 700;
+
+    color: #2e2a22;
+  }
+}
+
+
+// ========================================
+// TABLET
+// ========================================
+
+@media (max-width: 1024px) {
+
+  .bestItems {
+    padding:
+      90px
+      0
+      110px;
+  }
+
+  .inner {
+    width:
+      calc(100% - 48px);
+  }
+
+  .contents {
+    min-height: 540px;
+
+    gap: 20px;
+  }
+
+  .hero {
+    min-height: 540px;
+  }
+
+  .productGrid {
+    gap:
+      22px
+      16px;
+  }
+
+  .productImage {
+    min-height: 180px;
+  }
+}
+
+
+// ========================================
+// MOBILE
+// ========================================
+
+@media (max-width: 768px) {
+
+  .bestItems {
+    padding:
+      75px
+      0
+      85px;
+  }
+
+  .inner {
+    width:
+      calc(100% - 32px);
+  }
+
+  .heading {
+    margin-bottom: 30px;
+
+    h2 {
+      font-size: 30px;
+    }
+  }
+
+  .viewAll {
+    position: static;
+
+    width: fit-content;
+
+    margin:
+      18px
+      0
+      0
+      auto;
+  }
+
+  .contents {
+    grid-template-columns: 1fr;
+
+    min-height: auto;
+  }
+
+  .hero {
+    height: 500px;
+
+    min-height: 0;
+  }
+
+  .heroInfo {
+    left: 24px;
+    bottom: 55px;
+
+    max-width: 78%;
+  }
+
+  .heroArrow {
+    width: 36px;
+    height: 36px;
+
+    font-size: 24px;
+  }
+
+  .heroPrev {
+    left: 14px;
+  }
+
+  .heroNext {
+    right: 14px;
+  }
+
+  .heroPagination {
+    right: 22px;
+    bottom: 20px;
+  }
+
+  .productGrid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    grid-template-rows: auto;
+
+    gap: 28px 12px;
+  }
+
+  .productImage {
+    min-height: 210px;
+
+    img {
+      padding: 20px;
+    }
+  }
+}
+
+
+// ========================================
+// SMALL MOBILE
+// ========================================
+
+@media (max-width: 480px) {
+
+  .hero {
+    height: 420px;
+  }
+
+  .productGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .productImage {
+    height: 300px;
+  }
+}

@@ -1,0 +1,447 @@
+.beforeAfter {
+  width: 100%;
+  padding: 130px 0 150px;
+
+  background-color: #302b26;
+}
+
+.inner {
+  width: min(1200px, calc(100% - 80px));
+  margin: 0 auto;
+}
+
+
+// ========================================
+// HEADING
+// ========================================
+
+.heading {
+  margin-bottom: 55px;
+
+  text-align: center;
+
+  color: #f8f4ed;
+}
+
+.eyebrow {
+  display: block;
+
+  margin-bottom: 14px;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  letter-spacing: 0.2em;
+
+  color: #c9a777;
+}
+
+.heading {
+  h2 {
+    margin: 0;
+
+    font-size: clamp(42px, 4.5vw, 70px);
+
+    font-weight: 400;
+
+    line-height: 1;
+
+    letter-spacing: -0.045em;
+
+    color: #f8f4ed;
+  }
+}
+
+.deviceName {
+  margin: 18px 0 0;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  letter-spacing: 0.08em;
+
+  color: #d7c7b2;
+}
+
+.description {
+  margin: 9px 0 0;
+
+  font-size: 13px;
+
+  line-height: 1.6;
+
+  color: #9f9487;
+}
+
+
+// ========================================
+// COMPARE
+// ========================================
+
+.compareWrap {
+  width: min(900px, 100%);
+  margin: 0 auto;
+}
+
+.compareStage {
+  position: relative;
+
+  width: 100%;
+  aspect-ratio: 16 / 10;
+
+  overflow: hidden;
+
+  border-radius: 18px;
+
+  background-color: #e9e0d4;
+
+  box-shadow:
+    0 35px 90px
+    rgba(0, 0, 0, 0.18);
+
+  user-select: none;
+
+  img {
+    pointer-events: none;
+    user-select: none;
+  }
+}
+
+
+// ========================================
+// IMAGES
+// ========================================
+
+.beforeImage,
+.afterImage {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.beforeImage {
+  z-index: 1;
+}
+
+.afterImage {
+  z-index: 2;
+
+  will-change: clip-path;
+}
+
+
+// ========================================
+// LABEL
+// ========================================
+
+.label {
+  position: absolute;
+
+  top: 22px;
+
+  z-index: 6;
+
+  padding: 7px 12px;
+
+  border-radius: 999px;
+
+  background-color:
+    rgba(255, 255, 255, 0.82);
+
+  backdrop-filter: blur(10px);
+
+  font-size: 20px;
+  font-weight: 700;
+
+  letter-spacing: 0.15em;
+
+  color: #40382f;
+
+  pointer-events: none;
+}
+
+.beforeLabel {
+  left: 22px;
+}
+
+.afterLabel {
+  right: 22px;
+}
+
+
+// ========================================
+// DIVIDER
+// ========================================
+
+.divider {
+  position: absolute;
+
+  top: 0;
+  bottom: 0;
+
+  z-index: 7;
+
+  width: 0;
+
+  transform: translateX(-50%);
+
+  pointer-events: none;
+}
+
+.dividerLine {
+  position: absolute;
+
+  top: 0;
+  bottom: 0;
+  left: 50%;
+
+  width: 2px;
+
+  background-color: #fff;
+
+  transform: translateX(-50%);
+
+  box-shadow:
+    0 0 10px
+    rgba(0, 0, 0, 0.08);
+}
+
+
+// ========================================
+// HANDLE
+// ========================================
+
+.handle {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 54px;
+  height: 54px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  border: 1px solid
+    rgba(79, 65, 51, 0.18);
+
+  border-radius: 50%;
+
+  background-color: #fff;
+
+  color: #40382f;
+
+  font-size: 20px;
+
+  transform:
+    translate(-50%, -50%);
+
+  box-shadow:
+    0 8px 25px
+    rgba(38, 31, 24, 0.18);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+
+  span {
+    line-height: 1;
+  }
+}
+
+
+// ========================================
+// RANGE
+//
+// 실제 조작은 얘가 담당.
+// opacity 0이라 보이지 않을 뿐,
+// 이미지 전체가 드래그 영역이 됨.
+// ========================================
+
+.range {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 10;
+
+  width: 100%;
+  height: 100%;
+
+  margin: 0;
+
+  opacity: 0;
+
+  cursor: ew-resize;
+
+  appearance: none;
+
+  touch-action: none;
+
+  &:hover + * {
+    cursor: ew-resize;
+  }
+}
+
+
+// ========================================
+// BOTTOM INFO
+// ========================================
+
+.dragGuide {
+  margin: 10px;
+  text-align: right;
+  font-size: 12px;
+
+  letter-spacing: 0.18em;
+
+  color: #756b60;
+}
+
+
+// ========================================
+// HOVER
+// ========================================
+
+.compareStage:hover {
+  .handle {
+    transform:
+      translate(-50%, -50%)
+      scale(1.08);
+
+    box-shadow:
+      0 10px 30px
+      rgba(38, 31, 24, 0.25);
+  }
+}
+
+
+// ========================================
+// TABLET
+// ========================================
+
+@media (max-width: 1024px) {
+  .beforeAfter {
+    padding:
+      105px
+      0
+      120px;
+  }
+
+  .inner {
+    width:
+      calc(100% - 48px);
+  }
+
+  .heading {
+    margin-bottom: 42px;
+  }
+}
+
+
+// ========================================
+// MOBILE
+// ========================================
+
+@media (max-width: 768px) {
+  .beforeAfter {
+    padding:
+      80px
+      0
+      90px;
+  }
+
+  .inner {
+    width:
+      calc(100% - 32px);
+  }
+
+  .heading {
+    margin-bottom: 32px;
+
+    h2 {
+      font-size: 40px;
+    }
+  }
+
+  .deviceName {
+    margin-top: 14px;
+
+    font-size: 12px;
+  }
+
+  .description {
+    font-size: 12px;
+  }
+
+  .compareStage {
+    aspect-ratio: 4 / 5;
+
+    border-radius: 12px;
+  }
+
+  .label {
+    top: 14px;
+
+    padding:
+      6px
+      9px;
+
+    font-size: 8px;
+  }
+
+  .beforeLabel {
+    left: 14px;
+  }
+
+  .afterLabel {
+    right: 14px;
+  }
+
+  .handle {
+    width: 46px;
+    height: 46px;
+
+    font-size: 18px;
+  }
+
+  .compareInfo {
+    margin-top: 14px;
+  }
+
+  .dragGuide {
+    font-size: 8px;
+  }
+}
+
+
+// ========================================
+// SMALL MOBILE
+// ========================================
+
+@media (max-width: 480px) {
+  .heading {
+    h2 {
+      font-size: 34px;
+    }
+  }
+
+  .compareInfo {
+    grid-template-columns:
+      1fr 1fr;
+
+    .dragGuide {
+      display: none;
+    }
+  }
+}

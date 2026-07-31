@@ -1,0 +1,75 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+  function isSignedIn() {
+    return request.auth != null;
+  }
+
+  function isAdmin() {
+    return isSignedIn()
+      && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+  }
+
+    match /users/{userId} {
+      allow create: if request.auth != null
+        && request.auth.uid == userId
+        && request.resource.data.email == request.auth.token.email
+        && request.resource.data.nickname is string
+        && request.resource.data.role == 'user'
+        && request.resource.data.createdAt == request.time;
+
+      allow read: if isSignedIn() && (request.auth.uid == userId || isAdmin());
+
+      allow update: if (isAdmin()
+        && request.resource.data.role == resource.data.role) || (isSignedIn()
+        && request.auth.uid == userId
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['nickname'])
+        && request.resource.data.nickname is string);
+
+      allow delete: if false;
+    }
+
+    match /orders/{orderId} {
+      allow read: if isSignedIn()
+        && resource.data.userId == request.auth.uid;
+
+      allow create, update, delete: if false;
+    }
+
+    match /carts/{userId}/items/{itemId} {
+      allow create, read, update, delete: if request.auth != null
+        && request.auth.uid == userId;
+    }
+
+    match /wishlists/{userId}/items/{itemId} {
+      allow create, read, update, delete: if request.auth != null
+        && request.auth.uid == userId;
+    }
+
+    match /products/{productId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /recommendedProducts/{productId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /notices/{noticeId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /reviews/{reviewId} {
+      allow read: if true;
+      allow create: if isSignedIn() && request.resource.data.authorUid == request.auth.uid;
+      allow update, delete: if isAdmin();
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

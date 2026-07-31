@@ -1,0 +1,284 @@
+// ===== 상단 요약 + 미리보기 =====
+.headerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.summaryCard {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: #faf7f0;
+}
+.summaryCount {
+  color: #2e2a22;
+  font-size: 20px;
+  font-weight: 700;
+
+  em { color: #a39a89; font-style: normal; font-size: 14px; font-weight: 500; }
+}
+.summaryLabel { color: #7d735f; font-size: 12px; }
+.limitBadge {
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: #fbe7e5;
+  color: #c1453a;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.previewLink {
+  color: #b9905a;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+
+  &:hover { text-decoration: underline; }
+}
+
+// ===== 탭 =====
+.tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid #ece5d8;
+
+  button {
+    padding: 10px 4px;
+    margin-right: 20px;
+    border: none;
+    border-bottom: 2px solid transparent;
+    background: none;
+    color: #a39a89;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+}
+.tabActive { color: #2e2a22 !important; border-bottom-color: #b9905a !important; }
+
+// ===== 검색/필터 =====
+.toolbar {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+.filterField {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  color: #7d735f;
+  font-size: 12px;
+
+  input, select {
+    padding: 9px 12px;
+    border: 1px solid #ece5d8;
+    border-radius: 5px;
+    font: inherit;
+    color: #2e2a22;
+    background: #fff;
+  }
+  input { min-width: 220px; }
+}
+
+// ===== 토스트 =====
+.toast {
+  margin: 0 0 14px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  width: fit-content;
+}
+.toast.success { background: #edf5ec; color: #49774a; }
+.toast.error { background: #fbe7e5; color: #c1453a; }
+
+.loading, .empty { padding: 32px 0; color: #a39a89; font-size: 13px; text-align: center; }
+
+// ===== 테이블 (추천 중 / 추천 가능) =====
+.table { border-top: 1px solid #ece5d8; }
+.tableHead, .tableRow {
+  display: grid;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 4px;
+}
+.tableHead {
+  color: #a39a89;
+  font-size: 11px;
+  font-weight: 700;
+  border-bottom: 1px solid #ece5d8;
+}
+.tableRow {
+  border-bottom: 1px solid #f2ede2;
+}
+
+// 추천 중 탭: 순서 + 노출상태 열 포함 (7칸)
+.recommendedTable .tableHead,
+.recommendedTable .tableRow {
+  grid-template-columns: 70px 48px 2fr 110px 100px 90px 110px;
+}
+// 추천 가능한 상품 탭: 5칸
+.availableTable .tableHead,
+.availableTable .tableRow {
+  grid-template-columns: 48px 2fr 110px 100px 140px;
+}
+
+.dragHandle {
+  color: #b9a888;
+  font-size: 12px;
+  cursor: grab;
+  user-select: none;
+}
+
+.thumb {
+  width: 56px;
+  height: 56px;
+  border-radius: 6px;
+  object-fit: cover;
+  background: #f2ede2;
+}
+
+.name { color: #1f1b12; font-size: 14px; font-weight: 500; }
+
+.categoryBadge {
+  display: inline-block;
+  width: fit-content;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: #f3e8d6;
+  color: #8a6a3f;
+  font-size: 11px;
+  font-weight: 600;
+  border: 1px solid #ddd3c1;
+}
+
+.cat_SKINCARE {
+  background: #f4eee1;
+  color: #5f4328;
+  border-color: #cdb899;
+}
+
+.cat_CLEANSING {
+  background: #fbefe2;
+  color: #ae642d;
+  border-color: #e5ba91;
+}
+
+.cat_LIFTING {
+  background: #eef0df;
+  color: #68703b;
+  border-color: #c5cb9c;
+}
+
+.cat_LED {
+  background: #fbe9e5;
+  color: #bd5c54;
+  border-color: #e9b4ad;
+}
+
+.cat_BODY {
+  background: #edf0f1;
+  color: #687278;
+  border-color: #c7ced1;
+}
+
+.cat_HAIR {
+  background: #eee8e1;
+  color: #765b45;
+  border-color: #d1c1b1;
+}
+
+.price { color: #4b4438; font-size: 13px; font-weight: 500; }
+
+.liveBadge {
+  display: inline-block;
+  width: fit-content;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: #edf5ec;
+  color: #49774a;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+// ===== 버튼 =====
+.addButton, .swapButton, .removeButton, .confirmButton, .cancelButton {
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-size: 12px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.addButton {
+  border: 1px solid #b9905a;
+  background: #b9905a;
+  color: #fff;
+
+  &:disabled { border-color: #ddd3c1; background: #ece5d8; color: #a39a89; cursor: not-allowed; }
+}
+.swapButton {
+  border: 1px solid #b9905a;
+  background: #fff;
+  color: #b9905a;
+}
+.removeButton {
+  border: 1px solid #ddd3c1;
+  background: #fff;
+  color: #7d735f;
+
+  &:hover { border-color: #c1453a; color: #c1453a; }
+  &:disabled { color: #a39a89; cursor: not-allowed; }
+}
+
+.swapPanel {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  grid-column: 5 / -1;
+
+}
+.confirmButton { border: 1px solid #b9905a; background: #b9905a; color: #fff; }
+.cancelButton { border: 1px solid #ddd3c1; background: #fff; color: #7d735f; }
+
+// ===== 페이지네이션 =====
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 16px;
+
+  button {
+    min-width: 32px;
+    padding: 7px 10px;
+    border: 1px solid #ece5d8;
+    border-radius: 5px;
+    background: #fff;
+    color: #7d735f;
+    font-size: 12px;
+    cursor: pointer;
+
+    &:disabled { opacity: 0.4; cursor: not-allowed; }
+  }
+}
+.activePage {
+  border-color: #b9905a !important;
+  background: #b9905a !important;
+  color: #fff !important;
+}
+
+@media (max-width: 860px) {
+  .tableHead { display: none; }
+  .recommendedTable .tableRow,
+  .availableTable .tableRow {
+    grid-template-columns: 1fr;
+    row-gap: 6px;
+  }
+  .toolbar { flex-wrap: wrap; }
+  .filterField input { min-width: 0; width: 100%; }
+}

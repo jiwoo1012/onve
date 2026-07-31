@@ -1,0 +1,612 @@
+// ========================================
+// BEST REVIEW
+// ========================================
+
+.bestReview {
+  width: 100%;
+
+  padding: 120px 0 140px;
+
+  background-color: #f7f3ec;
+}
+
+.inner {
+  width: min(
+    1320px,
+    calc(100% - 80px)
+  );
+
+  margin: 0 auto;
+}
+
+
+// ========================================
+// HEADING
+// ========================================
+
+.heading {
+  margin-bottom: 55px;
+
+  text-align: center;
+
+  > span {
+    display: block;
+
+    margin-bottom: 10px;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    letter-spacing: 0.2em;
+
+    color: #b9905a;
+  }
+
+  h2 {
+    position: relative;
+
+    width: fit-content;
+
+    margin: 0 auto;
+
+    font-size: 40px;
+    font-weight: 500;
+
+    letter-spacing: -0.035em;
+
+    color: #2e2a22;
+
+    &::after {
+      content: '';
+
+      position: absolute;
+
+      left: 50%;
+      bottom: -10px;
+
+      width: 55px;
+      height: 2px;
+
+      background-color: #b9905a;
+
+      transform: translateX(-50%);
+    }
+  }
+
+  p {
+    margin: 27px 0 0;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+
+    color: #968a78;
+  }
+}
+
+
+// ========================================
+// REVIEW AREA
+// ========================================
+
+.reviewArea {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.15fr)
+    minmax(360px, 0.85fr);
+
+  align-items: center;
+
+  gap: 70px;
+}
+
+
+// ========================================
+// LEFT IMAGE
+// ========================================
+
+.imageArea {
+  position: relative;
+
+  width: 100%;
+
+  aspect-ratio: 1.35 / 1;
+
+  overflow: hidden;
+
+  border-radius: 20px;
+
+  background-color: #e9e1d5;
+
+  box-shadow:
+    0 25px 60px
+    rgba(55, 45, 35, 0.08);
+}
+
+.reviewImage {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  opacity: 0;
+
+  transform: scale(1.04);
+
+  transition:
+    opacity 0.8s ease,
+    transform 3.5s ease;
+}
+
+.reviewImageActive {
+  opacity: 1;
+
+  transform: scale(1);
+}
+
+
+// ========================================
+// IMAGE NUMBER
+// ========================================
+
+.imageNumber {
+  position: absolute;
+
+  left: 28px;
+  bottom: 24px;
+
+  z-index: 5;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  padding:
+    8px
+    12px;
+
+  border-radius: 999px;
+
+  background-color:
+    rgba(255, 255, 255, 0.82);
+
+  backdrop-filter:
+    blur(10px);
+
+  span {
+    font-size: 9px;
+
+    color: #51483e;
+  }
+}
+
+.numberLine {
+  width: 25px;
+  height: 1px;
+
+  background-color: #b9905a;
+}
+
+
+// ========================================
+// RIGHT
+// ========================================
+
+.reviewContent {
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+}
+
+
+// ========================================
+// TABS
+// ========================================
+
+.tabs {
+  display: flex;
+  text-align: center;
+  align-items: center;
+
+  gap: 13px;
+
+  margin-bottom: 22px;
+}
+
+.tab {
+  width: 34px;
+  height: 34px;
+
+  padding: 0;
+
+  border: 1px solid transparent;
+
+  border-radius: 50%;
+
+  background: transparent;
+
+  color: #a49989;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
+
+  &:hover {
+    color: #2e2a22;
+
+    border-color: #cdbda7;
+  }
+}
+
+.tabActive {
+  background-color: #2e2a22;
+
+  border-color: #2e2a22;
+
+  color: #fff;
+
+  transform: scale(1.05);
+
+  &:hover {
+    color: #fff;
+
+    border-color: #2e2a22;
+  }
+}
+
+
+// ========================================
+// PRODUCT BOX
+// ========================================
+
+.productBox {
+  margin-bottom: 12px;
+
+  padding:
+    17px
+    22px;
+
+  border-radius: 10px;
+
+  background-color: #2e2a22;
+
+  color: #fff;
+
+  animation:
+    contentUp
+    0.45s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    );
+
+  > span {
+    display: block;
+
+    margin-bottom: 5px;
+
+    font-size: 8px;
+
+    letter-spacing: 0.17em;
+
+    color: #bda98d;
+  }
+
+  h3 {
+    margin: 0;
+
+    overflow: hidden;
+
+    font-size: 15px;
+    font-weight: 500;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+  }
+}
+
+
+// ========================================
+// REVIEW BOX
+// ========================================
+
+.reviewBox {
+  min-height: 170px;
+
+  padding:
+    24px
+    24px
+    20px;
+
+  box-sizing: border-box;
+
+  border-radius: 12px;
+
+  background-color: #2e2a22;
+
+  color: #fff;
+
+  animation:
+    contentUp
+    0.55s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    );
+}
+
+.stars {
+  display: flex;
+
+  gap: 2px;
+
+  margin-bottom: 14px;
+
+  span {
+    font-size: 11px;
+
+    color: #c9a86a;
+  }
+}
+
+.reviewBox {
+  > p {
+    margin: 0;
+
+    font-size: 14px;
+    line-height: 1.75;
+
+    color:
+      rgba(255, 255, 255, 0.88);
+  }
+}
+
+
+// ========================================
+// REVIEWER
+// ========================================
+
+.reviewer {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  margin-top: 22px;
+
+  padding-top: 15px;
+
+  border-top:
+    1px solid
+    rgba(255, 255, 255, 0.12);
+
+  span {
+    font-size: 8px;
+
+    letter-spacing: 0.15em;
+
+    color: #a99478;
+  }
+
+  strong {
+    font-size: 10px;
+    font-weight: 500;
+
+    color:
+      rgba(255, 255, 255, 0.6);
+  }
+}
+
+
+// ========================================
+// 3 SECOND PROGRESS
+// ========================================
+
+.autoProgress {
+  width: 100%;
+  height: 2px;
+
+  margin-top: 18px;
+
+  overflow: hidden;
+
+  background-color: #ddd2c2;
+}
+
+.progressBar {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: #2e2a22;
+
+  transform-origin: left center;
+
+  animation:
+    autoProgress
+    3s
+    linear
+    forwards;
+}
+
+.progressPaused {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: #b9905a;
+}
+
+
+// ========================================
+// ANIMATIONS
+// ========================================
+
+@keyframes autoProgress {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes contentUp {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+
+// ========================================
+// TABLET
+// ========================================
+
+@media (max-width: 1024px) {
+
+  .bestReview {
+    padding:
+      100px
+      0
+      110px;
+  }
+
+  .inner {
+    width:
+      calc(100% - 48px);
+  }
+
+  .reviewArea {
+    gap: 45px;
+
+    grid-template-columns:
+      minmax(0, 1.05fr)
+      minmax(320px, 0.95fr);
+  }
+}
+
+
+// ========================================
+// MOBILE
+// ========================================
+
+@media (max-width: 768px) {
+
+  .bestReview {
+    padding:
+      80px
+      0
+      90px;
+  }
+
+  .inner {
+    width:
+      calc(100% - 32px);
+  }
+
+  .heading {
+    margin-bottom: 36px;
+
+    h2 {
+      font-size: 32px;
+    }
+  }
+
+  .reviewArea {
+    grid-template-columns: 1fr;
+
+    gap: 28px;
+  }
+
+  .imageArea {
+    aspect-ratio: 1 / 1;
+
+    border-radius: 14px;
+  }
+
+  .tabs {
+    justify-content: center;
+
+    margin-bottom: 20px;
+  }
+
+  .reviewBox {
+    min-height: 155px;
+  }
+}
+
+
+// ========================================
+// SMALL MOBILE
+// ========================================
+
+@media (max-width: 480px) {
+
+  .heading {
+    h2 {
+      font-size: 29px;
+    }
+  }
+
+  .tab {
+    width: 30px;
+    height: 30px;
+
+    font-size: 12px;
+  }
+
+  .productBox {
+    padding:
+      14px
+      17px;
+
+    h3 {
+      font-size: 13px;
+    }
+  }
+
+  .reviewBox {
+    padding:
+      20px
+      18px;
+
+    > p {
+      font-size: 13px;
+    }
+  }
+}

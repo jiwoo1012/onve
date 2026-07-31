@@ -1,0 +1,78 @@
+.searchBox {
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  border: 1px solid #e5e0da;
+  border-radius: 30px;
+  background-color: #fff;
+
+  overflow: hidden;
+
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+
+  // 마우스 올렸을 때
+  &:hover {
+    border-color: #b69b7d;
+  }
+
+  // 검색창 내부 input을 클릭했을 때
+  &:focus-within {
+    border-color: #b69b7d;
+    box-shadow: 0 6px 20px rgba(89, 74, 60, 0.12);
+    transform: translateY(-1px);
+  }
+
+  input {
+    flex: 1;
+    height: 44px;
+    padding: 0 20px;
+
+    border: none;
+    outline: none;
+    background: transparent;
+
+    font-size: 14px;
+    color: #282624;
+
+    &::placeholder {
+      color: #aaa39b;
+      transition: color 0.3s ease;
+    }
+
+    &:focus::placeholder {
+      color: #c8b8a7;
+    }
+
+    // type="search" 기본 X 버튼 스타일 제거
+    &::-webkit-search-cancel-button {
+      appearance: none;
+    }
+  }
+
+  button {
+    height: 44px;
+    padding: 0 22px;
+
+    border: none;
+    background-color: transparent;
+
+    font-size: 13px;
+    font-weight: 500;
+    color: #594a3c;
+
+    cursor: pointer;
+
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+
+    &:hover {
+      background-color: #594a3c;
+      color: #fff;
+    }
+  }
+}
