@@ -6,6 +6,7 @@ import React, {
 
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useNavigate } from 'react-router-dom'
 
 import styles from './MainBanner.module.scss'
 
@@ -41,6 +42,7 @@ const clamp = (value) => {
 
 const MainBanner = ({ children }) => {
   const sectionRef = useRef(null)
+  const navigate = useNavigate()
 
   const finalImageRef = useRef(null)
 
@@ -677,7 +679,7 @@ const MainBanner = ({ children }) => {
           YOUR ROUTINE.
         </span>
 
-        <button type="button">
+        <button type="button" onClick={() => navigate('/products')}>
           SHOP NOW
         </button>
       </div>
