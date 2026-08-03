@@ -124,7 +124,7 @@ const Cart = () => {
 
       {cartItem.length === 0 ? (
         <EmptyMessage
-          image="/img/empty/empty-cart.png"
+          image="/img/headerIcon_Black-04.png"
           title="장바구니가 비었습니다."
           desc="마음에 드는 상품을 장바구니에 담아보세요."
           link="/products"
