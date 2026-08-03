@@ -160,9 +160,6 @@ const Wishlist = () => {
                       key={item.id}
                       className={`${styles.cardSlot} ${isRemoving ? styles.cardRemoving : ''}`}
                     >
-                      {/* hover 안내 */}
-                      <span className={styles.removeHint}>찜 해제</span>
-
                       {/* 클릭 직후 피드백 */}
                       {isRemoving && (
                         <div className={styles.removeFeedback}>

@@ -5,7 +5,7 @@ import styles from './EmptyMessage.module.scss'
 const EmptyMessage = ({ image, title, desc, link, linkText }) => {
   return (
     <div className={styles.empty}>
-      {image && <img src='/img/headerIcon_Black-04.png' alt="" className={styles.image} />}
+      {image && <img src={image} alt="" className={styles.image} />}
       <p className={styles.title}>{title}</p>
       {desc && <p className={styles.desc}>{desc}</p>}
       {link && linkText && (

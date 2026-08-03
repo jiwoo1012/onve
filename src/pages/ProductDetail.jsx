@@ -287,6 +287,10 @@ const ProductDetail = () => {
                   <p>독자적인 기술력과 고기능성 성분으로 피부와 두피 본연의 건강함을 되찾아 드립니다.</p>
                 </div>
 
+                <div className={styles.brandDetailImage}>
+                  <img src="/img/detail-02.png" alt="onve 브랜드 상세 이미지" />
+                </div>
+
                 <div className={styles.promiseGrid}>
                   <div className={styles.promiseCard}>
                     <div className={styles.num}>01</div>

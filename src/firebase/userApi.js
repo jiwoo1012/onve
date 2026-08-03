@@ -40,6 +40,7 @@ export const createUserProfile = async (user, nickname = user.displayName) => {
     email: user.email,
     nickname: userNickname,
     role: 'user',
+    points: 0,
     createdAt: serverTimestamp(),
   })
 

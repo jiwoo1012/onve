@@ -466,6 +466,15 @@
         color: #7a7269;
         line-height: 1.6;
       }
+      .brandDetailImage {
+  margin: 32px 0;
+
+  img {
+    display: block;
+    width: 100%;
+    border-radius: 8px;
+  }
+}
     }
 
     .promiseGrid {

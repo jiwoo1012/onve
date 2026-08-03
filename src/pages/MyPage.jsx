@@ -5,6 +5,7 @@ import { auth } from '../firebase/firebase'
 import { createUserProfile, getUserProfile, updateUserNickname } from '../firebase/userApi'
 import { getUserOrders } from '../firebase/orderApi'
 import { loadLocal, saveLocal } from '../utils/localStorage'
+import { usePointStore } from '../store/pointStore'
 import styles from './MyPage.module.scss'
 
 const formatJoinedAt = (createdAt) => {
@@ -29,6 +30,7 @@ const MyPage = () => {
   const [profileError, setProfileError] = useState('')
   const [nickname, setNickname] = useState('')
   const [newPassword, setNewPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
   const [saveMessage, setSaveMessage] = useState('')
   const [isSaving, setIsSaving] = useState(false)
   const [orders, setOrders] = useState([])
@@ -40,6 +42,10 @@ const MyPage = () => {
   const [wishlistItems, setWishlistItems] = useState([])
   const [isWishlistLoading, setIsWishlistLoading] = useState(false)
   const [wishlistError, setWishlistError] = useState('')
+
+  const points = usePointStore((state) => state.points)
+  const coupons = usePointStore((state) => state.coupons)
+  const fetchUserBenefits = usePointStore((state) => state.fetchUserBenefits)
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -80,6 +86,11 @@ const MyPage = () => {
 
     loadProfile()
   }, [user])
+
+  useEffect(() => {
+    if (!user) return
+    fetchUserBenefits(user.uid)
+  }, [user, fetchUserBenefits])
 
   useEffect(() => {
     if (!user) return
@@ -172,6 +183,11 @@ const MyPage = () => {
       return
     }
 
+    if (newPassword && newPassword !== confirmPassword) {
+      setSaveMessage('비밀번호가 일치하지 않습니다.')
+      return
+    }
+
     setIsSaving(true)
 
     try {
@@ -185,9 +201,10 @@ const MyPage = () => {
       if (newPassword) {
         await updatePassword(user, newPassword)
         setNewPassword('')
+        setConfirmPassword('')
       }
 
-      setSaveMessage('회원 정보가 수정되었습니다.')
+      setSaveMessage('변경사항이 저장되었습니다.')
     } catch (error) {
       console.error(error)
       setSaveMessage(
@@ -203,44 +220,74 @@ const MyPage = () => {
   if (!isAuthChecked) return <p className={styles.loadingMessage}>인증 정보를 확인하는 중입니다.</p>
   if (!user) return null
 
+  const displayName = profile?.nickname || user.displayName || '회원'
+
   return (
     <section className={styles.myPage}>
       <div className={styles.header}>
-        <p className={styles.eyebrow}>MY PAGE</p>
+        <div className={styles.headerTop}>
+          <p className={styles.eyebrow}>MY PAGE</p>
+          <span className={styles.brandMark}>onvé</span>
+        </div>
         <h1>마이페이지</h1>
       </div>
 
-      <div className={styles.profileCard}>
-        <div className={styles.avatar}>{(profile?.nickname || user.displayName || user.email)?.[0]?.toUpperCase() || 'U'}</div>
-        <div className={styles.profileInfo}>
-          <strong>{profile?.nickname || user.displayName || '회원'}님</strong>
-          <span>{profile?.email || user.email}</span>
-          <span>가입일 {formatJoinedAt(profile?.createdAt)}</span>
+      <div className={styles.topSection}>
+        <div className={styles.profileCard}>
+          <button type="button" className={styles.logoutButton} onClick={handleLogout}>
+            로그아웃 <span aria-hidden="true">↗</span>
+          </button>
+
+          <div className={styles.profileMain}>
+            <div className={styles.avatar}>{displayName?.[0]?.toUpperCase() || 'U'}</div>
+            <div className={styles.profileInfo}>
+              <strong>{displayName}님</strong>
+              <span className={styles.profileEmail}>{profile?.email || user.email}</span>
+            </div>
+          </div>
+
+          <div className={styles.profileMeta}>
+            <div className={styles.metaItem}>
+              <span className={styles.metaLabel}>회원등급</span>
+              <span className={styles.metaValue}>일반회원</span>
+            </div>
+            <div className={styles.metaItem}>
+              <span className={styles.metaLabel}>가입일</span>
+              <span className={styles.metaValue}>{formatJoinedAt(profile?.createdAt)}</span>
+            </div>
+            <Link to="/mypage/points" className={styles.metaItem}>
+              <span className={styles.metaLabel}>포인트</span>
+              <span className={styles.metaValueAccent}>{points.toLocaleString()}P</span>
+            </Link>
+            <Link to="/mypage/coupons" className={styles.metaItem}>
+              <span className={styles.metaLabel}>쿠폰</span>
+              <span className={styles.metaValueAccent}>{coupons.filter((c) => !c.isUsed).length}장</span>
+            </Link>
+          </div>
+
+          {isProfileLoading && <p className={styles.profileLoading}>회원 정보를 불러오는 중입니다.</p>}
+          {profileError && <p className={styles.profileError}>{profileError}</p>}
         </div>
-        <button type="button" className={styles.logoutButton} onClick={handleLogout}>로그아웃</button>
+
+        {profile && (
+          <section className={styles.profileEdit}>
+            <h2>회원 정보 수정</h2>
+            <form className={styles.profileForm} onSubmit={handleProfileSubmit}>
+              <label>닉네임<input value={nickname} onChange={(event) => setNickname(event.target.value)} /></label>
+              <label>이메일<input value={profile.email || user.email} disabled /></label>
+              <label>새 비밀번호<input type="password" value={newPassword} onChange={(event) => setNewPassword(event.target.value)} placeholder="변경할 때만 입력해주세요" /></label>
+              <label>비밀번호 확인<input type="password" value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} placeholder="새 비밀번호 재입력" /></label>
+              {saveMessage && <p className={styles.saveMessage}>{saveMessage}</p>}
+              <button type="submit" className={styles.saveButton} disabled={isSaving}>{isSaving ? '저장 중...' : '변경사항 저장'}</button>
+            </form>
+          </section>
+        )}
       </div>
-
-      {isProfileLoading && <p className={styles.profileLoading}>회원 정보를 불러오는 중입니다.</p>}
-      {profileError && <p className={styles.profileError}>{profileError}</p>}
-
-      {profile && (
-        <section className={styles.profileEdit}>
-          <h2>회원 정보 수정</h2>
-          <form className={styles.profileForm} onSubmit={handleProfileSubmit}>
-            <label>닉네임<input value={nickname} onChange={(event) => setNickname(event.target.value)} /></label>
-            <label>이메일<input value={profile.email || user.email} disabled /></label>
-            <label>새 비밀번호<input type="password" value={newPassword} onChange={(event) => setNewPassword(event.target.value)} placeholder="변경할 때만 입력해주세요" /></label>
-            {saveMessage && <p className={styles.saveMessage}>{saveMessage}</p>}
-            <button type="submit" className={styles.saveButton} disabled={isSaving}>{isSaving ? '저장 중...' : '회원 정보 저장'}</button>
-          </form>
-        </section>
-      )}
 
       <div className={styles.menuGrid}>
         <Link to="/orders" className={styles.menuCard}><span className={styles.menuLabel}>주문 내역</span><span className={styles.menuCount}>{orders.length}건</span></Link>
         <Link to="/wishlist" className={styles.menuCard}><span className={styles.menuLabel}>찜한 상품</span><span className={styles.menuCount}>{wishlistItems.length}개</span></Link>
         <Link to="/cart" className={styles.menuCard}><span className={styles.menuLabel}>장바구니</span><span className={styles.menuCount}>{cartItems.length}개</span></Link>
-        <Link to="/profile/edit" className={styles.menuCard}><span className={styles.menuLabel}>회원 정보 수정</span><span className={styles.menuArrow}>→</span></Link>
       </div>
 
       <div className={styles.section}>

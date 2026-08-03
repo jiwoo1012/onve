@@ -49,6 +49,22 @@ const ProductCard = ({ product, onWishItem }) => {
     }
   }
 
+  const addToCart = () => {
+    if (!useAuthStore.getState().user) {
+      alert('로그인 후 장바구니를 이용해 주세요.')
+      return
+    }
+    if (isSoldOut) return
+
+    const cartItems = loadLocal('cart', [])
+    const existingItem = cartItems.find((item) => item.id === product.id)
+    const nextCart = existingItem
+      ? cartItems.map((item) => item.id === product.id ? { ...item, quantity: Math.min(item.quantity + 1, Number(product.stock)) } : item)
+      : [...cartItems, { ...product, quantity: 1 }]
+
+    saveLocal('cart', nextCart)
+  }
+
   return (
     <article className={styles.card}>
       <div className={styles.imageArea}>
@@ -64,6 +80,12 @@ const ProductCard = ({ product, onWishItem }) => {
           {isLiked ? '♥' : '♡'}
         </button>
         {isSoldOut && <span className={styles.soldOutBadge}>품절</span>}
+        <div className={styles.productActions}>
+          <Link to={`/products/${product.id}`} className={styles.detailButton}>상세보기</Link>
+          <button type="button" className={styles.cartButton} onClick={addToCart} disabled={isSoldOut}>
+            {isSoldOut ? '품절' : '장바구니 담기'}
+          </button>
+        </div>
       </div>
 
       <div className={styles.information}>

@@ -7,10 +7,13 @@ import OrderSummary from '../components/OrderSummary'
 import { httpsCallable } from 'firebase/functions'
 import { auth, functions } from '../firebase/firebase'
 import useAuthStore from '../store/authStore'
+import { usePointStore } from '../store/pointStore'
+import { calculateEarnedPoints } from '../firebase/pointsApi'
 import styles from './Cart.module.scss'
 
 const Cart = () => {
   const user = useAuthStore((state) => state.user)
+  const earnPoints = usePointStore((state) => state.earnPoints)
 
   const savedCartItem = loadLocal('cart', [])
   const [cartItem, setCartItem] = useState(savedCartItem)
@@ -70,8 +73,24 @@ const Cart = () => {
     try {
       const completeOrder = httpsCallable(functions, 'completeOrder')
       await completeOrder({ items: cartItem.map((item) => ({ productId: item.id, quantity: item.quantity })) })
+
+      // 주문 성공 후 포인트 적립 (배송비 제외, 상품 금액 기준)
+      const earnedPoints = calculateEarnedPoints(subTotal)
+      if (earnedPoints > 0) {
+        try {
+          await earnPoints(auth.currentUser.uid, earnedPoints)
+        } catch (pointError) {
+          // 포인트 적립 실패는 주문 자체를 막지 않음
+          console.error(pointError)
+        }
+      }
+
       setCartItem([])
-      setOrderMessage('주문이 완료되었습니다.')
+      setOrderMessage(
+        earnedPoints > 0
+          ? `주문이 완료되었습니다. ${earnedPoints.toLocaleString()}P가 적립되었어요.`
+          : '주문이 완료되었습니다.'
+      )
     } catch (error) {
       console.error(error)
       setOrderMessage(error.message?.includes('재고') ? error.message : '주문 처리 중 오류가 발생했습니다. 재고는 변경되지 않았습니다.')
